@@ -1,101 +1,133 @@
-import Image from "next/image";
+// src/app/page.tsx
+'use client'
+
+import Navbar from '@/components/Navbar'
+import HeroSection from '@/components/HeroSection'
+import WhyChooseUs from '@/components/landing/WhyChooseUs'
+import Steps from '@/components/landing/Steps'
+import Testimonials from '@/components/landing/Testimonials'
+import SeasonalitySection from '@/components/landing/SeasonalitySection'
+import OurFarmSection from '@/components/landing/OurFarmSection'
+import FAQSection from '@/components/landing/FAQSection'
+import ContactFormSection from '@/components/landing/ContactFormSection'
+import UsefulTipsSection from '@/components/landing/UsefulTipsSection'
+import MapSection from '@/components/landing/MapSection'
+import Footer from '@/components/landing/Footer' 
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      <Navbar />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+      <main className="text-gray-800 dark:text-gray-100">
+        {/* 1. Hero: пусть внутри HeroSection есть фон-картинка, 
+            а кнопки будут зелёные и оранжевые. */}
+        <section className="relative h-screen">
+          <HeroSection />
+        </section>
+
+        {/* 2. WhyChooseUs: фон белый, 
+            заголовок/иконки можно подсветить зелёным/оранжевым. */}
+        <section className="bg-white dark:bg-gray-900 py-16">
+          <div className="container mx-auto px-4">
+            <WhyChooseUs />
+          </div>
+        </section>
+
+        {/* 3. Steps: градиент с использованием кастомного зелёного (#15803D) */}
+        <section 
+          className="
+            py-16
+            bg-gradient-to-b 
+            from-[#15803D]/10  /* светлый оттенок зелёного (10% прозрачности) */ 
+            to-[#15803D]/30    /* более тёмный низ (30% прозрачности) */
+            dark:from-gray-800 
+            dark:to-gray-700
+          "
+        >
+          <div className="container mx-auto px-4">
+            <Steps />
+          </div>
+        </section>
+
+        {/* 4. Testimonials: фон белый, 
+            карточки внутри могут иметь границу оранжевого. */}
+        <section className="bg-white dark:bg-gray-900 py-16">
+          <div className="container mx-auto px-4">
+            <Testimonials />
+          </div>
+        </section>
+
+        {/* 5. SeasonalitySection: 
+            Используем оранжевый градиент (F97316) */}
+        <section
+          className="
+            py-16
+            bg-gradient-to-b 
+            from-[#F97316]/10
+            to-[#F97316]/30
+            dark:from-gray-700 
+            dark:to-gray-900
+          "
+        >
+          <div className="container mx-auto px-4">
+            <SeasonalitySection />
+          </div>
+        </section>
+
+        {/* 6. OurFarmSection: белый фон, текст с зелёными заголовками */}
+        <section className="bg-white dark:bg-gray-900 py-16 text-gray-800 dark:text-gray-100">
+          <div className="container mx-auto px-4">
+            <OurFarmSection />
+          </div>
+        </section>
+
+        {/* 7. FAQSection: 
+            Попробуем чисто зелёный фон (#15803D) + белый текст */}
+        <section className="py-16 bg-[#15803D] text-white dark:bg-[#14532D]">
+          <div className="container mx-auto px-4">
+            <FAQSection />
+          </div>
+        </section>
+
+        {/* 8. ContactFormSection: 
+            Оранжевый градиент + белый текст */}
+        <section 
+          className="
+            py-16
+            bg-gradient-to-b from-[#F97316]/20 to-[#F97316]/60
+            text-gray-800 dark:text-gray-100
+          "
+        >
+          <div className="container mx-auto px-4">
+            <ContactFormSection />
+          </div>
+        </section>
+
+        {/* 9. UsefulTipsSection: снова белый фон */}
+        <section className="bg-white dark:bg-gray-900 py-16">
+          <div className="container mx-auto px-4">
+            <UsefulTipsSection />
+          </div>
+        </section>
+
+        {/* 10. MapSection: 
+            Градиент зелёно-оранжевый (на ваш вкус). */}
+        <section 
+          className="
+            py-16 
+            bg-gradient-to-b 
+            from-[#15803D] to-[#F97316]
+            text-white
+            dark:from-gray-800 dark:to-gray-700
+          "
+        >
+          <div className="container mx-auto px-4">
+            <MapSection />
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+       <Footer />
+    </>
+  )
 }

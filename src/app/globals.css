@@ -5,6 +5,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #16a34a;
+  --primary-dark: #15803d;
+  --primary-light: #22c55e;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,8 +17,80 @@
   }
 }
 
+/* Глобальные стили для scroll-snap: прокрутка по всему окну (html, body) + плавная */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory; /* Прилипание по вертикали */
+}
+
+/* Если вы используете Next.js (App Router), 
+   весь рендер идёт внутри #__next: 100% высоты, чтобы секции растягивались */
+#__next {
+  height: 100%;
+}
+
+/* Каждая секция приливаетcя к верху экрана и занимает 100vh */
+section {
+  scroll-snap-align: start;
+  height: 100vh;
+}
+
+/* Стили для body (цвета, шрифты) + фоновое изображение */
 body {
   color: var(--foreground);
-  background: var(--background);
+  /* Фоновый цвет на случай, если картинка не загрузится */
+  background-color: var(--background);
+
+  /* Подключаем картинку из public/images/pattern.png */
+  background-image: url('/images/pattern.png');
+  background-repeat: repeat;   /* Чтобы изображение повторялось */
+  background-size: auto;       /* Масштаб 1:1, можно менять при необходимости */
+
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  /* min-height: 100%; <-- уже не нужно, так как height: 100% выше */
 }
+
+/* Анимации для .fade-in */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Параллакс-контейнер, если используете */
+.parallax-container {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  perspective: 2px;
+}
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.parallax-layer-back {
+  transform: translateZ(-1px) scale(1.5);
+}
+.parallax-layer-base {
+  transform: translateZ(0);
+}
+
+/* Если нужно учесть фиксированный Navbar (~80px высотой), 
+   чтобы контент не прятался под ним, добавьте:
+section:first-of-type {
+  padding-top: 80px;
+  box-sizing: border-box;
+}
+*/
